@@ -5,14 +5,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.JButton;
+import javax.swing.JToggleButton;
+import javax.swing.AbstractButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Timer;
 
 public class GUI implements ActionListener {
+    private Timer timer = new Timer();
+    private App app = new App();
     public static void main(String[] args) {
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("App Blocker");
+        frame.setTitle("App Blocker");
         JPanel panel = new JPanel();
 
         frame.setSize(350, 300);
@@ -40,7 +44,7 @@ public class GUI implements ActionListener {
         panel.add(passwordText);
 
         //button
-        JButton button = new JButton("Login");
+        JToggleButton button = new JToggleButton("Block");
         button.setBounds(10, 80, 80, 25);
         button.addActionListener(new GUI());
         panel.add(button);
@@ -50,7 +54,18 @@ public class GUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Timer timer = new Timer();
-        timer.schedule(new App(), 0, 5000);
+        AbstractButton abstractButton = (AbstractButton)e.getSource();
+        boolean selected = abstractButton.getModel().isSelected();
+
+        if (selected) {
+            timer.schedule(app, 0, 5000);
+        }
+        else {
+            System.out.println("not selected");
+            app.cancel();
+            timer.cancel();
+            timer.purge();
+        }
+
     }
 }

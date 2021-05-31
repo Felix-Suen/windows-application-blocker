@@ -1,9 +1,8 @@
 package com.blocker;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -53,12 +52,5 @@ public class App extends TimerTask {
         apps.add("VALORANT-Win64-Shipping.exe");
 
         findAndKill(apps);
-    }
-
-    public static void main(String[] args) {
-        
-
-        Timer timer = new Timer();
-        timer.schedule(new App(), 0, 5000);
     }
 }
