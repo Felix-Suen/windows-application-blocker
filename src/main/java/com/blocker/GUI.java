@@ -1,12 +1,7 @@
 package com.blocker;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JToggleButton;
-import javax.swing.AbstractButton;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Timer;
@@ -17,31 +12,21 @@ public class GUI implements ActionListener {
     public static void main(String[] args) {
         JFrame frame = new JFrame("App Blocker");
         frame.setTitle("App Blocker");
-        JPanel panel = new JPanel();
 
         frame.setSize(350, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        JPanel panel = new JPanel();
         frame.add(panel);
-
         panel.setLayout(null);
+        panel.setBackground(Color.GRAY);
+        panel.setPreferredSize(new Dimension(250, 250));
 
-        // username
-        JLabel userLabel = new JLabel("User");
-        userLabel.setBounds(10, 20, 80, 25);
-        panel.add(userLabel);
-
-        JTextField userText = new JTextField(20);
-        userText.setBounds(100, 20, 165, 25);
-        panel.add(userText);
-
-        //password
-        JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(10, 50, 80, 25);
-        panel.add(passwordLabel);
-
-        JPasswordField passwordText = new JPasswordField(20);
-        passwordText.setBounds(100, 50, 165, 25);
-        panel.add(passwordText);
+        // title
+        String text = "Application Blocker";
+        JLabel title = new JLabel("<html><div style='text-align: center;'>" + text + "</div></html>");
+        panel.add(title);
 
         //button
         JToggleButton button = new JToggleButton("Block");
